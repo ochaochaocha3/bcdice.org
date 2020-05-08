@@ -7,7 +7,7 @@ html {
 
 body {
   padding: 0;
-  margin: 0;
+  margin: 0 0 2rem;
   font-family: "Helvetica Neue",
     Arial,
     "Hiragino Kaku Gothic ProN",
@@ -18,20 +18,32 @@ body {
 
 .container {
   max-width: 800px;
-  padding: 1rem 1rem;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 1rem;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
-.green {
-  color: #336600
+.row {
+  margin: 1rem 0;
+  box-sizing: border-box;
+}
+
+a:link, a:visited {
+  color: #1565c0;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #2196f3;
+}
+
+.bcdice-response {
+  color: darken(#EDAD0B, 8%);
 }
 
 .flex {
   display: flex;
 }
-
 
 .newline-hint span {
   display: inline-block;
@@ -59,50 +71,89 @@ header {
   }
 
   a {
-    padding: 25px 0 0 90px;
-    color: #000;
-    text-decoration: none;
+    padding: 25px 0 12px 100px;
     display: inline-block;
     background: url(/image/bcdice-logo.png) no-repeat left 10px;
   }
 
+  a:link, a:visited {
+    color: #000;
+    text-decoration: none;
+  }
+
   .container {
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem;
   }
 }
 
 .intro, .not-found {
-  background-color: #f1f1f1;
+  /* Background pattern from Toptal Subtle Patterns */
+  background: #f1f1f1 url('{{ site.baseurl }}/image/hexellence.png');
   border-bottom: solid 1px #ccc;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15) inset;
+}
+
+.intro {
+  .flex {
+    align-items: flex-start;
+  }
+
+  .summary-row {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+
+  .summary, .code-container {
+    margin: 0 0.5rem;
+  }
+}
+
+.intro .summary {
+  flex: 1;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: darken(#673ab7, 10%);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  p {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+.intro .code-container {
+  flex: 1;
 }
 
 .intro .code {
-  flex: 2;
-  box-sizing: border-box;
-  margin-left: 1rem;
   padding: 1rem 1.5rem;
   background-color: #fff;
   border: solid 1px #ccc;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 
-  p{
+  p {
     margin: 0;
     font-weight: 600;
-    line-height: 1.5rem;
+    line-height: 1.5;
   }
 }
 
 .intro .invite {
-  flex: 1;
-  box-sizing: border-box;
+  margin-top: 2rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
 
   .discord {
     background-color: #7289DA;
   }
-  
+
   .google-forms {
     background-color: rgb(103, 58, 183);
   }
-  
+
   .github {
     background-color: #24292e;
   }
@@ -113,14 +164,15 @@ header {
 
   .btn {
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
 
     box-sizing: border-box;
     width: 100%;
 
     border-radius: 4px;
-    padding: 0.3em 0.5em;
-    margin-bottom: 0.6rem;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
 
     font-size: 1.2rem;
     color: #fff;
@@ -133,25 +185,14 @@ header {
     &:hover {
       opacity: 0.8;
     }
+
+    svg, .btn-text {
+      margin: 0.1rem 0;
+    }
   }
 }
 
 article {
-  a {
-    color: #1565c0;
-    text-decoration: underline;
-  }
-
-  a:hover {
-    color: #2196f3;
-  }
-
-  h1 {
-    font-size: 2rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  
   h2 {
     font-size: 1.5rem;
     margin-top: 2rem;
@@ -166,10 +207,6 @@ article {
   
   img {
     max-width: 100%;
-  }
-
-  section.summary p {
-    font-size: 1.3rem;
   }
 }
 
@@ -207,19 +244,66 @@ footer {
   }
 }
 
-@media (max-width: 800px) {
-  header .container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1120px;
   }
-  
+
+  .intro .code-container {
+    flex: 2;
+  }
+}
+
+@media (max-width: 991.98px) {
   .intro {
-    .flex {
+    .summary-row {
+      flex-direction: column;
+      margin: 0;
+    }
+
+    .summary, .code-container {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 0;
+    }
+
+    .invite {
+      flex-direction: row;
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .intro {
+    .summary {
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .code p {
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .invite {
       flex-direction: column;
     }
 
-    .code {
+    .invite {
       margin-left: 0;
+      margin-right: 0;
+
+      .btn {
+        flex-direction: row;
+        margin: 0.25rem 0;
+        padding: 0.3rem 0.5rem;
+      }
+
+      svg, .btn-text {
+        margin: 0;
+      }
     }
   }
 }
